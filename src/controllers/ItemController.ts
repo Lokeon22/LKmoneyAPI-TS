@@ -28,17 +28,10 @@ class ItemController {
 
     page = Number(page);
 
-    if (!page) {
-      page = 1;
-    }
-
     if (tipo) {
-      const ItensTypeFiltered: Item[] = await knex("Itens")
-        .where({
-          type: tipo,
-        })
-        .limit(limit)
-        .offset((page - 1) * limit);
+      const ItensTypeFiltered: Item[] = await knex("Itens").where({
+        type: tipo,
+      });
       return res.json(ItensTypeFiltered);
     }
 

@@ -20,16 +20,10 @@ class ItemController {
         let { tipo, page } = req.query;
         const limit = 6;
         page = Number(page);
-        if (!page) {
-            page = 1;
-        }
         if (tipo) {
-            const ItensTypeFiltered = await (0, knex_1.connection)("Itens")
-                .where({
+            const ItensTypeFiltered = await (0, knex_1.connection)("Itens").where({
                 type: tipo,
-            })
-                .limit(limit)
-                .offset((page - 1) * limit);
+            });
             return res.json(ItensTypeFiltered);
         }
         if (page) {
